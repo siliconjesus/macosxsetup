@@ -29,6 +29,16 @@ for CASK in `cat casks.cfg | grep -v $#`
 do
    brew cask install $CASK
 done
+
 # Pull rcfiles
+git clone https://github.com/siliconjesus/rcfiles ~/rcfiles/
+bash ~/rcfiles/install_rcfiles.sh
+. ~/.bashrc
 
+# Install pip3 libraries
+# to generate: pip3 list | tail +3 | awk '{print $1}' > pip.cfg
 
+for PIP in `cat pip.cfg | grep -v $#`
+do
+   pip3 install $PIP
+done
